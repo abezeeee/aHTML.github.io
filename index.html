@@ -133,11 +133,13 @@
                     l_midNumArrayTxt += l_midNumArray[0];
                     l_midDifNum2 = 999
                 }
-                if (l_midDifNum1 == l_midDifNum2 && i > 0) {
+                if (l_num != l_midNum) {
+                    if (l_midDifNum1 == l_midDifNum2 && i > 0) {
                     l_midDifNum1 = l_midDifNum2
                     l_midNum = l_num
                     l_midNumArray.push(l_midNum)
                     l_midNumArrayTxt += ", " +l_midNumArray[1];
+                    }
                 }
 
             }
