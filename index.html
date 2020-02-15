@@ -26,42 +26,50 @@
 
 <body onload="l_mainFuntion()" style="background-color:black">
 
-    <font size="7" style="text-align:center">
+    <font size="6" style="text-align:center">
         <p style="color:blueviolet"> 1. random numbers between 1 to 100<br /></p>
     </font>
 
     <div class="wrapper">
         <button onclick="l_mainFuntion()">click me</button>
     </div>
-    
-    <font size="6" style="text-align:center">
+
+    <font size="5" style="text-align:center">
         <p id="rtrn_random" style="color:cornflowerblue"></p>
     </font>
-    
 
-    <font size="5" style="text-align:center">
-        <p style="color:turquoise">2. add all numbers<br /></p>
-    </font>
 
     <font size="4" style="text-align:center">
+        <p style="color:turquoise">2. sum all numbers<br /></p>
+    </font>
+
+    <font size="3" style="text-align:center">
         <p id="rtrn_addAll" style="color:lawngreen"></p>
     </font>
-    
-    <font size="4" style="text-align:center">
+
+    <font size="3" style="text-align:center">
         <p style="color:gold">3. find min number<br /></p>
     </font>
-    
 
-    <font size="5" style="text-align:center">
+
+    <font size="4" style="text-align:center">
         <p id="rtrn_minNum" style="color:yellow"></p>
     </font>
 
-    <font size="6" style="text-align:center">
+    <font size="5" style="text-align:center">
         <p style="color:orangered">4. find max number<br /></p>
     </font>
 
-    <font size="7"  style="text-align:center">
+    <font size="6" style="text-align:center">
         <p id="rtrn_maxNum" style="color:red"></p>
+    </font>
+
+    <font size="5" style="text-align:center">
+        <p style="color:deeppink">5. find mid number<br /></p>
+    </font>
+
+    <font size="4" style="text-align:center">
+        <p id="rtrn_midNum" style="color:violet"></p>
     </font>
 
     <script>
@@ -74,17 +82,38 @@
             var l_minNum = 0;
             var l_maxNum = 0;
 
+            var l_midNum = 0;
+            var l_midDifNum1 = 0;
+            var l_midDifNum2 = 0;
+            var l_midNumArray = [];
+            var l_midNumArrayTxt = "";
+
             for (var i = 0; i < 10; i++) {
                 l_num = Math.floor(Math.random() * 100) + 1;
                 l_numArray.push(l_num)
 
                 if (i == 0) {
+
                     l_text += l_numArray[i];
                     l_minNum += l_num;
                     l_maxNum += l_num;
+                    l_midNum += l_num;
+                    l_midNumArray.push(l_midNum)
+                    l_midNumArrayTxt += l_midNumArray[i];
+                    l_midDifNum1 = l_num - 50;
+
+                    if (l_midDifNum1 < 0) {
+                        l_midDifNum1 = l_midDifNum1 * (-1)
+                    }
+
                 }
                 else {
                     l_text += ", " + l_numArray[i];
+                    l_midDifNum2 = l_num - 50;
+                    if (l_midDifNum2 < 0) {
+                        l_midDifNum2 = l_midDifNum2 * (-1)
+                    }
+
                 }
 
                 l_addAll += l_num;
@@ -95,6 +124,21 @@
                 if (l_num > l_maxNum) {
                     l_maxNum = l_num
                 }
+                if (l_midDifNum1 > l_midDifNum2 && i > 0) {
+                    l_midDifNum1 = l_midDifNum2
+                    l_midNum = l_num
+                    l_midNumArray = []
+                    l_midNumArrayTxt = ""
+                    l_midNumArray.push(l_midNum)
+                    l_midNumArrayTxt += l_midNumArray[0];
+                    l_midDifNum2 = 999
+                }
+                if (l_midDifNum1 == l_midDifNum2 && i > 0) {
+                    l_midDifNum1 = l_midDifNum2
+                    l_midNum = l_num
+                    l_midNumArray.push(l_midNum)
+                    l_midNumArrayTxt += ", " +l_midNumArray[1];
+                }
 
             }
 
@@ -102,6 +146,9 @@
             document.getElementById("rtrn_addAll").innerHTML = l_addAll;
             document.getElementById("rtrn_minNum").innerHTML = l_minNum;
             document.getElementById("rtrn_maxNum").innerHTML = l_maxNum;
+            document.getElementById("rtrn_maxNum").innerHTML = l_maxNum;
+            document.getElementById("rtrn_midNum").innerHTML = l_midNumArrayTxt;
+
         }
     </script>
 
